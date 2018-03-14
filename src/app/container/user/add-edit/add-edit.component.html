@@ -1,0 +1,99 @@
+<div class="col-md-12 ">
+  <div class="col-md-9">
+  </div>
+  <div class="col-md-3 left">
+    <button class="btn btn-primary right-aligh" (click)="onBack()">Back</button>
+  </div>
+</div>
+<div class="col-xs-12">
+  <p class="success success-message" *ngIf="successMessage">{{successMessage}}</p>
+  <p class="error error-message" *ngIf="errorMessage">{{errorMessage}}</p>
+  <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="first_name">First Name *</label>
+      <input type="text" formControlName="first_name" name="first_name" class="form-control">
+      <span class="error_span" *ngIf="!userForm.get('first_name').valid && userForm.get('first_name').touched">This Filed is required.</span>
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name *</label>
+      <input type="text" formControlName="last_name" name="last_name" class="form-control">
+      <span class="error_span" *ngIf="!userForm.get('last_name').valid && userForm.get('last_name').touched">This Filed is required.</span>
+    </div>
+    <div class="form-group">
+      <label for="email">Email *</label>
+      <input type="text" formControlName="email" name="email" class="form-control">
+      <span class="error_span" *ngIf="!userForm.get('email').valid && userForm.get('email').touched">Please enter a valid email.</span>
+    </div>
+<div class="form-group">
+      <label for="password">Password *</label>
+      <input type="password" formControlName="password" name="password" class="form-control">
+      <span class="error_span" *ngIf="!userForm.get('password').valid && userForm.get('password').touched">Please enter a valid password length of 8 charector.</span>
+    </div>
+
+    <div class="form-group">
+      <label for="profile_image">Profile Image</label>
+      <input #fileinput type="file" formControlName="profile_image" name="profile_image" (change)="onImageChange($event)" class="">
+      <span class="error_span" *ngIf="!userForm.get('profile_image').valid && userForm.get('profile_image').touched">  This Filed is required.</span>
+      
+    </div>
+    <div class="form-group">
+      <img src="{{imagePath}}">
+    </div>
+
+    <div class="form-group" formArrayName="other_images">
+      <div class="form-group clear-fix"
+      *ngFor="let otherImages of formData.controls; let i=index"
+      >
+      <div class="col-xs-6" style="max-height:100%"> <input type="file" [formControlName]="i" (change)="onOtherImageChange($event,i)">
+      <div class="form-group">
+      <img src="{{otherimagePath[i]}}">
+      </div>
+    
+      <button
+      type="button"
+      class="btn btn-danger"
+      (click)="onRemoveOtherImage(i)"
+      >Remove</button>
+      </div>
+      </div>
+    <div class="col-xs-12" style="padding-top:100px" >
+      <button type="button" class="btn btn-default" (click)="onAddMoreImages()"><i class="fa fa-plus-square"></i> Add More Images</button>
+    </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="company">Company</label>
+      <input type="text" formControlName="company" name="company" class="form-control">
+
+    </div>
+    <div class="form-group">
+      <label for="website">Website</label>
+      <input type="text" formControlName="website" name="website" class="form-control">
+
+    </div>
+    <div class="form-group">
+
+      <div *ngFor="let gender of genders">
+        <label for="{{gender}}">{{gender | uppercase}}</label>
+        <input type="radio" formControlName="gender" value="{{gender}}" (change)="ongenderChnage(gender)">
+
+      </div>
+      <span class="error_span" *ngIf="!userForm.get('gender').validator && userForm.get('gender').touched 
+&& userForm.get('gender').value===null">
+  This field is required.
+</span>
+      <div style="width:200px; height:10px" [@divState]="state"></div>
+    </div>
+    <div class="form-group">
+      <!--<button [disabled]="!userForm.valid" type="submit" class="btn btn-primary">Save</button>-->
+      <button type="submit" class="btn btn-primary">Save</button>
+      <button type="button" class="btn btn-danger" (click)="reserFormData()">Reset</button>
+
+    </div>
+
+  </form>
+
+
+</div>

@@ -1,0 +1,33 @@
+
+
+
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1 *ngIf="currentRoute==='/dashboard'; else elseblock">
+        Dashboard
+        <small>Control panel</small>
+      </h1>
+    <ng-template #elseblock>
+<h1>Users
+        <small>{{currentRoute}}</small>
+      </h1>
+
+    </ng-template>
+      <ol class="breadcrumb">
+        <li *ngIf="currentRoute==='/dashboard'; else elseblock2"><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+        <ng-template #elseblock2>
+<li><a href="#"><i class="fa fa-dashboard"></i> Home/Users</a></li>
+            
+        </ng-template>
+        <li class="active">{{currentRoute | uppercase}}</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+<router-outlet></router-outlet>
+<router-outlet name="edit_user"></router-outlet>
+    </section>
+    <!-- /.content -->
+  </div>  

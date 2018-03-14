@@ -1,0 +1,76 @@
+<div class="col-xs-12">
+<form [formGroup]="dynamicForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+  <input type="text" class="form-control" formControlName="name">
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" formControlName="company">
+</div>
+<div class="form-group">
+  <input type="number" class="form-control" formControlName="qty">
+</div>
+<div class="form-group">
+  <input type="text" class="form-control" formControlName="status">
+</div>
+<div class="form-group">
+  <select class="form-control" formControlName="country">
+<option *ngFor="let con of countries; let i=index" value="{{con.id}}">{{con.name}}</option>
+
+</select>
+
+</div>
+<div class="form-group">
+  <button type="submit" class="btn btn-primary">Add</button>
+</div>
+  
+<div class="form-group">
+  <label>
+  <input type="checkbox" formControlName="test_check">
+  Test
+  </label>
+</div>
+<div class="form-group">
+  <input type="text" appDisbaleControl [disableControl]="dynamicForm.get('test_check').value" formControlName="test_input">
+  
+</div>
+
+<div class="form-group">
+  <label>
+  <input type="checkbox" formControlName="test_check2">
+  Test
+  </label>
+</div>
+<div class="form-group">
+  <input type="text" appDisbaleControl [disableControl]="dynamicForm.get('test_check2').value" formControlName="test_input2">
+  
+</div>
+
+
+<p>
+
+</p>
+
+</form>
+
+</div>
+<div class="row">
+  <div class="col-xs-12">
+<ul>
+<li *ngFor="let data of formdata; let i = index">
+<div class="col-xs-3">{{data.name}}</div>
+<div class="col-xs-3">{{data.company}}</div>
+<div class="col-xs-2">{{data.qty}}</div>
+<div class="col-xs-2">{{data.status}}</div>
+<div class="col-xs-2">
+<button type="button" (click)="onEdit(i)">Edit</button>
+
+</div>
+
+
+
+</li>
+
+</ul>
+  </div>
+
+</div>

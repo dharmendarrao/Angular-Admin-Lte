@@ -1,0 +1,10 @@
+ radio.ng-touched.ng-invalid ,input.ng-touched.ng-invalid{
+     border: solid 1px red;
+ }
+     radio.ng-touched.ng-invalid{
+   -webkit-appearance: none;
+ }
+    .error_span{color: red; font-weight: bold}
+
+p.success-message{color:green; border-radius: 1px solid yellow; width: 500px; height: 20px; }
+p.error-message{color:red; border-radius: 1px solid yellow; width: 500px; height: 20px; }
